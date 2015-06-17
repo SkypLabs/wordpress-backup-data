@@ -21,16 +21,21 @@ This Python script is made for doing a complete backup of your Wordpress blog's 
 
 ## How to
 
-You have to complete these four parameters into the script :
+	usage: wp-backup-data.py [-h] -u USER -p PASSWORD -a ADDRESS [--http]
+							 [--https]
 
-    protocol = Protocol.https
-    fqdn = ""
-    username = ""
-    password = ""
+	Do a backup of your WordPress data
 
-And to use it :
-
-    ./wp-backup-data.py
+	optional arguments:
+	  -h, --help            show this help message and exit
+	  -u USER, --user USER  username to use
+	  -p PASSWORD, --password PASSWORD
+							password to use
+	  -a ADDRESS, --address ADDRESS
+							root address of the WordPress blog (example:
+							'blog.example.net')
+	  --http                use HTTP as protocol
+	  --https               use HTTPS as protocol (default)
 
 ## License
 
