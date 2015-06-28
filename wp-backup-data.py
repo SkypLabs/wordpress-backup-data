@@ -5,6 +5,47 @@ from mechanize import Browser
 from datetime import datetime
 from argparse import ArgumentParser
 from getpass import getpass
+from sys import exit
+
+def check_address(address):
+	if not address or address.strip() == "":
+		raise ValueError('address required')
+	elif len(address) < 4:
+		raise ValueError("address too short")
+
+def check_username(username):
+	if not username or username.strip() == "":
+		raise ValueError('username required')
+	elif len(username) < 4 or len(username) > 60:
+		raise ValueError("username too short or too long")
+
+def check_password(password):
+	if not password or password.strip() == "":
+		raise ValueError('password required')
+	elif len(password) < 4:
+		raise ValueError("password too short")
+
+def check_field(checker, data):
+	try:
+		checker(data)
+	except ValueError, e:
+		print e
+		exit(1)
+	return data
+
+def check_prompt_field(checker, field = "", password = False):
+	while True:
+		try:
+			if password:
+				data = getpass()
+			else:
+				data = raw_input(field)
+			checker(data)
+			break
+		except ValueError, e:
+			print e
+			pass
+	return data
 
 ap = ArgumentParser(description="Do a backup of your WordPress data")
 ap.add_argument("-u", "--user", help="username to use")
@@ -18,19 +59,19 @@ ap.set_defaults(prompt_pwd=False)
 args = vars(ap.parse_args())
 
 if not args["address"]:
-	address = raw_input('URL: ')
+	address = check_prompt_field(check_address, 'URL: ')
 else:
-	address = args["address"]
+	address = check_field(check_address, args["address"])
 
 if not args["user"]:
-	user = raw_input('Username: ')
+	user = check_prompt_field(check_username, 'Username: ')
 else:
-	user = args["user"]
+	user = check_field(check_username, args["user"])
 
-if args["prompt_pwd"]or not args["password"]:
-	password = getpass()
+if args["prompt_pwd"] or not args["password"]:
+	password = check_prompt_field(check_password, password = True)
 else:
-	password = args["password"]
+	password = check_field(check_password, args["password"])
 
 if args["https"]:
 	protocol = "https://"
