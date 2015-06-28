@@ -47,7 +47,9 @@ def check_prompt_field(checker, field = "", password = False):
 			pass
 	return data
 
-ap = ArgumentParser(description="Do a backup of your WordPress data")
+ap = ArgumentParser(
+		description="Do a backup of your WordPress data",
+		epilog="Example: ./wp-backup-data.py -a blog.example.net -u user -P")
 ap.add_argument("-u", "--user", help="username to use")
 ap.add_argument("-p", "--password", help="password to use")
 ap.add_argument("-P", "--prompt-for-password", dest="prompt_pwd", action="store_true", help="prompt for password to use")

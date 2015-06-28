@@ -9,15 +9,15 @@ This Python script is made for doing a complete backup of your Wordpress blog's 
 
 ### On Fedora
 
-    yum install python-mechanize
+	yum install python-mechanize
 
 ### On Debian
 
-    aptitude install python-mechanize
+	aptitude install python-mechanize
 
 ### Using pip
 
-    pip install mechanize
+	pip install mechanize
 
 ## How to
 
@@ -38,6 +38,8 @@ This Python script is made for doing a complete backup of your Wordpress blog's 
 							'blog.example.net')
 	  --http                use HTTP as protocol
 	  --https               use HTTPS as protocol (default)
+
+	Example: ./wp-backup-data.py -a blog.example.net -u user -P
 
 ## License
 
