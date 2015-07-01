@@ -16,14 +16,10 @@ def check_address(address):
 def check_username(username):
 	if not username or username.strip() == "":
 		raise ValueError('username required')
-	elif len(username) < 4 or len(username) > 60:
-		raise ValueError("username too short or too long")
 
 def check_password(password):
 	if not password or password.strip() == "":
 		raise ValueError('password required')
-	elif len(password) < 4:
-		raise ValueError("password too short")
 
 def check_field(checker, data):
 	try:
