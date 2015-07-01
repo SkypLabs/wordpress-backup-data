@@ -34,8 +34,8 @@ This Python script is made for doing a complete backup of your Wordpress blog's 
 	  -P, --prompt-for-password
 							prompt for password to use
 	  -a ADDRESS, --address ADDRESS
-							root address of the WordPress blog (example:
-							'blog.example.net')
+							root address of the WordPress blog (examples:
+							'blog.example.net' or '192.168.20.53')
 	  --http                use HTTP as protocol
 	  --https               use HTTPS as protocol (default)
 	  -v, --version         show program's version number and exit

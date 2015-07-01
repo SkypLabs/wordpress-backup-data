@@ -6,12 +6,27 @@ from datetime import datetime
 from argparse import ArgumentParser
 from getpass import getpass
 from sys import exit
+from re import compile, IGNORECASE
 
 def check_address(address):
 	if not address or address.strip() == "":
 		raise ValueError('address required')
-	elif len(address) < 4:
-		raise ValueError("address too short")
+
+	# These regex come from Django project
+	# https://github.com/django/django/blob/master/django/core/validators.py
+	ul = '\u00a1-\uffff'
+	ipv4_re = r'(?:25[0-5]|2[0-4]\d|[0-1]?\d?\d)(?:\.(?:25[0-5]|2[0-4]\d|[0-1]?\d?\d)){3}'
+	hostname_re = r'[a-z' + ul + r'0-9](?:[a-z' + ul + r'0-9-]*[a-z' + ul + r'0-9])?'
+	domain_re = r'(?:\.[a-z' + ul + r'0-9]+(?:[a-z' + ul + r'0-9-]*[a-z' + ul + r'0-9]+)*)*'
+	tld_re = r'\.[a-z' + ul + r']{2,}\.?'
+	host_re = '(' + hostname_re + domain_re + tld_re + '|localhost)'
+	regex = compile(
+		r'(?:' + ipv4_re + '|' + host_re + ')'
+		r'$', IGNORECASE
+	)
+
+	if not regex.match(address):
+		raise ValueError('not a valid address')
 
 def check_username(username):
 	if not username or username.strip() == "":
@@ -49,7 +64,7 @@ ap = ArgumentParser(
 ap.add_argument("-u", "--user", help="username to use")
 ap.add_argument("-p", "--password", help="password to use")
 ap.add_argument("-P", "--prompt-for-password", dest="prompt_pwd", action="store_true", help="prompt for password to use")
-ap.add_argument("-a", "--address", help="root address of the WordPress blog (example: 'blog.example.net')")
+ap.add_argument("-a", "--address", help="root address of the WordPress blog (examples: 'blog.example.net' or '192.168.20.53')")
 ap.add_argument("--http", dest="https", action="store_false", help="use HTTP as protocol")
 ap.add_argument("--https", dest="https", action="store_true", help="use HTTPS as protocol (default)")
 ap.add_argument("-v", "--version", action="version", version="%(prog)s 1.1.0")
@@ -59,7 +74,7 @@ args = vars(ap.parse_args())
 
 try:
 	if not args["address"]:
-		address = check_prompt_field(check_address, 'URL: ')
+		address = check_prompt_field(check_address, 'Address: ')
 	else:
 		address = check_field(check_address, args["address"])
 
