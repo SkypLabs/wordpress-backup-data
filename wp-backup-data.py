@@ -6,7 +6,7 @@ from datetime import datetime
 from argparse import ArgumentParser
 from getpass import getpass
 from sys import exit
-from re import compile, IGNORECASE
+from re import compile, IGNORECASE, MULTILINE
 
 def check_address(address):
 	if not address or address.strip() == "":
@@ -111,8 +111,16 @@ try:
 	br.select_form(nr = 0)
 	backup = br.submit()
 
+	doctype_re = compile("<\!DOCTYPE html>$", MULTILINE)
+	result = backup.read()
+
+	# If the result is a HTML document instead of a XML document
+	if doctype_re.search(result):
+		print("\nBad credentials\n")
+		exit(1)
+
 	with open(filename, "w") as f:
-		f.write(backup.read())
+		f.write(result)
 except KeyboardInterrupt:
 	print("\n\nGood Bye\n")
 	exit(0)
