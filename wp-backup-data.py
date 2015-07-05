@@ -2,11 +2,23 @@
 # -*- coding: utf-8 -*-
 
 from mechanize import Browser
-from datetime import datetime
-from argparse import ArgumentParser
-from getpass import getpass
-from sys import exit
+from argparse import ArgumentParser, Action, ArgumentTypeError
 from re import compile, IGNORECASE, MULTILINE
+from datetime import datetime
+from getpass import getpass
+from os import access, W_OK
+from os.path import isdir
+from sys import exit
+
+class check_dir(Action):
+	def __call__(self, parser, namespace, values, option_string=None):
+		directory = values
+		if not isdir(directory):
+			raise ArgumentTypeError("%s is not a valid path" % (directory))
+		if access(directory, W_OK):
+			setattr(namespace, self.dest, directory)
+		else:
+			raise ArgumentTypeError("%s is not a writable directory" % (directory))
 
 def check_address(address):
 	if not address or address.strip() == "":
@@ -65,14 +77,16 @@ ap.add_argument("-u", "--user", help="username to use")
 ap.add_argument("-p", "--password", help="password to use")
 ap.add_argument("-P", "--prompt-for-password", dest="prompt_pwd", action="store_true", help="prompt for password to use")
 ap.add_argument("-a", "--address", help="root address of the WordPress blog (examples: 'blog.example.net' or '192.168.20.53')")
+ap.add_argument("-d", "--directory", action=check_dir, default=".", help="directory where the backup file will be stored")
 ap.add_argument("--http", dest="https", action="store_false", help="use HTTP as protocol")
 ap.add_argument("--https", dest="https", action="store_true", help="use HTTPS as protocol (default)")
 ap.add_argument("-v", "--version", action="version", version="%(prog)s 1.1.0")
 ap.set_defaults(https=True)
 ap.set_defaults(prompt_pwd=False)
-args = vars(ap.parse_args())
 
 try:
+	args = vars(ap.parse_args())
+
 	if not args["address"]:
 		address = check_prompt_field(check_address, 'Address: ')
 	else:
@@ -92,6 +106,8 @@ try:
 		protocol = "https://"
 	else:
 		protocol = "http://"
+
+	directory = args["directory"]
 
 	br = Browser()
 	br.set_handle_robots(False)
@@ -119,8 +135,11 @@ try:
 		print("\nBad credentials\n")
 		exit(1)
 
-	with open(filename, "w") as f:
+	with open(directory + "/" + filename, "w") as f:
 		f.write(result)
 except KeyboardInterrupt:
 	print("\n\nGood Bye\n")
 	exit(0)
+except ArgumentTypeError as e:
+	print "\n%s\n" % (e)
+	exit(1)
