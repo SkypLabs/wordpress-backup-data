@@ -81,7 +81,7 @@ if __name__ == "__main__":
 	ap.add_argument("-d", "--directory", action=check_dir, default=".", help="directory where the backup file will be stored")
 	ap.add_argument("--http", dest="https", action="store_false", help="use HTTP as protocol")
 	ap.add_argument("--https", dest="https", action="store_true", help="use HTTPS as protocol (default)")
-	ap.add_argument("-v", "--version", action="version", version="%(prog)s 1.1.0")
+	ap.add_argument("-v", "--version", action="version", version="%(prog)s 1.2.0")
 	ap.set_defaults(https=True)
 	ap.set_defaults(prompt_pwd=False)
 
