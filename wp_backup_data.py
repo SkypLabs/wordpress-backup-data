@@ -8,17 +8,17 @@ from datetime import datetime
 from getpass import getpass
 from os import access, W_OK
 from os.path import isdir
-from sys import exit
+from sys import exit, stderr, stdout
 
 class check_dir(Action):
 	def __call__(self, parser, namespace, values, option_string=None):
 		directory = values
 		if not isdir(directory):
-			raise ArgumentTypeError("%s is not a valid path" % (directory))
+			raise ArgumentTypeError("{0} is not a valid path".format(directory))
 		if access(directory, W_OK):
 			setattr(namespace, self.dest, directory)
 		else:
-			raise ArgumentTypeError("%s is not a writable directory" % (directory))
+			raise ArgumentTypeError("{0} is not a writable directory".format(directory))
 
 def check_address(address):
 	if not address or address.strip() == "":
@@ -52,7 +52,7 @@ def check_field(checker, data):
 	try:
 		checker(data)
 	except ValueError, e:
-		print e
+		stderr.write(str(e) + "\n")
 		exit(1)
 	return data
 
@@ -62,12 +62,12 @@ def check_prompt_field(checker, field = "", password = False):
 			if password:
 				data = getpass()
 			else:
-				data = raw_input(field)
+				stdout.write(field)
+				data = raw_input()
 			checker(data)
 			break
 		except ValueError, e:
-			print e
-			pass
+			stdout.write(str(e) + "\n")
 	return data
 
 if __name__ == "__main__":
@@ -133,14 +133,14 @@ if __name__ == "__main__":
 
 		# If the result is a HTML document instead of a XML document
 		if doctype_re.search(result):
-			print("\nBad credentials\n")
+			stderr.write("\nBad credentials\n")
 			exit(1)
 
 		with open(directory + "/" + filename, "w") as f:
 			f.write(result)
 	except KeyboardInterrupt:
-		print("\n\nGood Bye\n")
+		stdout.write("\n\nGood Bye\n")
 		exit(0)
 	except ArgumentTypeError as e:
-		print "\n%s\n" % (e)
+		stderr.write("\n{0}\n".format(e))
 		exit(1)
