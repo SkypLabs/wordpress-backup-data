@@ -1,0 +1,6 @@
+*.md
+Dockerfile
+LICENSE
+.gitignore
+.dockerignore
+.git/
