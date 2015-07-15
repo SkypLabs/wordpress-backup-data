@@ -4,7 +4,7 @@ This Python script is made for doing a complete backup of your Wordpress blog's 
 
 ## Dependancies
 
- * Python 2.7
+ * Python >= 2.7.9
  * [Mechanize][1] package
 
 ### On Fedora
@@ -21,8 +21,9 @@ This Python script is made for doing a complete backup of your Wordpress blog's 
 
 ## How to
 
-	usage: wp-backup-data.py [-h] [-u USER] [-p PASSWORD] [-P] [-a ADDRESS]
-							 [-d DIRECTORY] [--http] [--https] [-v]
+	usage: wp_backup_data.py [-h] [-u USER] [-p PASSWORD] [-P] [-a ADDRESS]
+							 [-d DIRECTORY] [--http] [--https]
+							 [--ignore-certificate] [-v]
 
 	Do a backup of your WordPress data
 
@@ -40,6 +41,7 @@ This Python script is made for doing a complete backup of your Wordpress blog's 
 							directory where the backup file will be stored
 	  --http                use HTTP as protocol
 	  --https               use HTTPS as protocol (default)
+	  --ignore-certificate  ignore invalid certificates
 	  -v, --version         show program's version number and exit
 
 	Example: ./wp-backup-data.py -a blog.example.net -u user -P

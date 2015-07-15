@@ -8,7 +8,13 @@ from datetime import datetime
 from getpass import getpass
 from os import access, W_OK
 from os.path import isdir
-from sys import exit, stderr, stdout
+from sys import exit, stderr, stdout, version_info
+
+if version_info[2] > 8:
+	from ssl import CertificateError
+else:
+	class CertificateError(Exception):
+		pass
 
 class check_dir(Action):
 	def __call__(self, parser, namespace, values, option_string=None):
@@ -81,8 +87,10 @@ if __name__ == "__main__":
 	ap.add_argument("-d", "--directory", action=check_dir, default=".", help="directory where the backup file will be stored")
 	ap.add_argument("--http", dest="https", action="store_false", help="use HTTP as protocol")
 	ap.add_argument("--https", dest="https", action="store_true", help="use HTTPS as protocol (default)")
+	ap.add_argument("--ignore-certificate", dest="ignore-cert", action="store_true", help="ignore invalid certificates")
 	ap.add_argument("-v", "--version", action="version", version="%(prog)s 1.2.0")
 	ap.set_defaults(https=True)
+	ap.set_defaults(ssl=False)
 	ap.set_defaults(prompt_pwd=False)
 
 	try:
@@ -107,6 +115,21 @@ if __name__ == "__main__":
 			protocol = "https://"
 		else:
 			protocol = "http://"
+
+		# Python by default attempts to perform certificate validation since v2.7.9
+		if args["ignore-cert"] and version_info[2] > 8:
+			from functools import wraps
+			from httplib import HTTPSConnection
+			from ssl import _create_unverified_context
+
+			old_init = HTTPSConnection.__init__
+
+			@wraps(HTTPSConnection.__init__)
+			def ignore_cert(self, *args, **kwargs):
+				kwargs["context"] = _create_unverified_context()
+				old_init(self, *args, **kwargs)
+
+			HTTPSConnection.__init__ = ignore_cert
 
 		directory = args["directory"]
 
@@ -143,4 +166,8 @@ if __name__ == "__main__":
 		exit(0)
 	except ArgumentTypeError as e:
 		stderr.write("\n{0}\n".format(e))
+		exit(1)
+	except CertificateError as e:
+		stderr.write("\n{0}\n".format(e))
+		stderr.write("You can use the '--ignore-certificate' option to ignore this error\n")
 		exit(1)
