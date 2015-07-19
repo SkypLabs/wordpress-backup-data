@@ -4,7 +4,7 @@ This Python script is made for doing a complete backup of your Wordpress blog's 
 
 ## Dependancies
 
- * Python >= 2.7.9
+ * Python 2.7
  * [Mechanize][1] package
 
 ### On Fedora
@@ -18,6 +18,20 @@ This Python script is made for doing a complete backup of your Wordpress blog's 
 ### Using pip
 
 	pip install mechanize
+
+## With Docker
+
+    docker run --rm -it -v <local path>:/backups docker.io/skyplabs/wordpress-backup-data
+
+The *local path* refers the folder on your host system where the backup file will be stored.
+
+If you want to store the backup file in your current directory :
+
+    docker run --rm -it -v $(pwd):/backups docker.io/skyplabs/wordpress-backup-data
+
+And if you want to specify some *options* :
+
+    docker run --rm -it -v $(pwd):/backups docker.io/skyplabs/wordpress-backup-data -d /backups <options>
 
 ## How to
 
@@ -44,7 +58,7 @@ This Python script is made for doing a complete backup of your Wordpress blog's 
 	  --ignore-certificate  ignore invalid certificates
 	  -v, --version         show program's version number and exit
 
-	Example: ./wp-backup-data.py -a blog.example.net -u user -P
+	Example: ./wp_backup_data.py -a blog.example.net -u user -P
 
 ## License
 
