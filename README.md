@@ -2,7 +2,7 @@
 
 This Python script is made for doing a complete backup of your Wordpress blog's data. It does exactly the same thing that the Wordpress' export feature.
 
-## Dependancies
+## Dependencies
 
  * Python 2.7
  * [Mechanize][1] package
