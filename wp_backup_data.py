@@ -54,6 +54,10 @@ def check_password(password):
 	if not password or password.strip() == "":
 		raise ValueError('password required')
 
+def check_otp(otp):
+	if not otp or otp.strip() == "":
+		raise ValueError('OTP required')
+
 def check_field(checker, data):
 	try:
 		checker(data)
@@ -83,6 +87,7 @@ if __name__ == "__main__":
 	ap.add_argument("-u", "--user", help="username to use")
 	ap.add_argument("-p", "--password", help="password to use")
 	ap.add_argument("-P", "--prompt-for-password", dest="prompt_pwd", action="store_true", help="prompt for password to use")
+	ap.add_argument("-O", "--prompt-for-otp", dest="prompt_otp", action="store_true", help="prompt for Yubikey OTP to use")
 	ap.add_argument("-a", "--address", help="root address of the WordPress blog (examples: 'blog.example.net' or '192.168.20.53')")
 	ap.add_argument("-d", "--directory", action=check_dir, default=".", help="directory where the backup file will be stored")
 	ap.add_argument("--http", dest="https", action="store_false", help="use HTTP as protocol")
@@ -110,6 +115,9 @@ if __name__ == "__main__":
 			password = check_prompt_field(check_password, password = True)
 		else:
 			password = check_field(check_password, args["password"])
+
+		if args["prompt_otp"]:
+			otp = check_prompt_field(check_otp, 'OTP: ')
 
 		if args["https"]:
 			protocol = "https://"
@@ -145,6 +153,10 @@ if __name__ == "__main__":
 		br.select_form(name="loginform")
 		br.form["log"] = user
 		br.form["pwd"] = password
+
+		if "otp" in locals():
+			br.form["otp"] = otp
+
 		br.submit()
 
 		br.open(protocol + address + "/wp-admin/export.php")
