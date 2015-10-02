@@ -93,7 +93,7 @@ if __name__ == "__main__":
 	ap.add_argument("--http", dest="https", action="store_false", help="use HTTP as protocol")
 	ap.add_argument("--https", dest="https", action="store_true", help="use HTTPS as protocol (default)")
 	ap.add_argument("--ignore-certificate", dest="ignore-cert", action="store_true", help="ignore invalid certificates")
-	ap.add_argument("-v", "--version", action="version", version="%(prog)s 1.2.0")
+	ap.add_argument("-v", "--version", action="version", version="%(prog)s 1.3.0")
 	ap.set_defaults(https=True)
 	ap.set_defaults(ssl=False)
 	ap.set_defaults(prompt_pwd=False)
