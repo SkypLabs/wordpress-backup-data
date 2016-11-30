@@ -9,43 +9,43 @@ This Python script is made for doing a complete backup of your Wordpress blog's 
 
 ### On Fedora
 
-	yum install python-mechanize
+    yum install python-mechanize
 
 ### On Debian
 
-	aptitude install python-mechanize
+    aptitude install python-mechanize
 
 ### Using pip
 
-	pip install mechanize
+    pip install mechanize
 
 ## How to
 
-	usage: wp_backup_data.py [-h] [-u USER] [-p PASSWORD] [-P] [-O] [-a ADDRESS]
-							 [-d DIRECTORY] [--http] [--https]
-							 [--ignore-certificate] [-v]
+    usage: wp_backup_data.py [-h] [-u USER] [-p PASSWORD] [-P] [-O] [-a ADDRESS]
+                             [-d DIRECTORY] [--http] [--https]
+                             [--ignore-certificate] [-v]
 
-	Do a backup of your WordPress data
+    Do a backup of your WordPress data
 
-	optional arguments:
-	  -h, --help            show this help message and exit
-	  -u USER, --user USER  username to use
-	  -p PASSWORD, --password PASSWORD
-							password to use
-	  -P, --prompt-for-password
-							prompt for password to use
-	  -O, --prompt-for-otp  prompt for Yubikey OTP to use
-	  -a ADDRESS, --address ADDRESS
-							root address of the WordPress blog (examples:
-							'blog.example.net' or '192.168.20.53')
-	  -d DIRECTORY, --directory DIRECTORY
-							directory where the backup file will be stored
-	  --http                use HTTP as protocol
-	  --https               use HTTPS as protocol (default)
-	  --ignore-certificate  ignore invalid certificates
-	  -v, --version         show program's version number and exit
+    optional arguments:
+      -h, --help            show this help message and exit
+      -u USER, --user USER  username to use
+      -p PASSWORD, --password PASSWORD
+                            password to use
+      -P, --prompt-for-password
+                            prompt for password to use
+      -O, --prompt-for-otp  prompt for Yubikey OTP to use
+      -a ADDRESS, --address ADDRESS
+                            root address of the WordPress blog (examples:
+                            'blog.example.net' or '192.168.20.53')
+      -d DIRECTORY, --directory DIRECTORY
+                            directory where the backup file will be stored
+      --http                use HTTP as protocol
+      --https               use HTTPS as protocol (default)
+      --ignore-certificate  ignore invalid certificates
+      -v, --version         show program's version number and exit
 
-	Example: ./wp-backup-data.py -a blog.example.net -u user -P
+    Example: ./wp-backup-data.py -a blog.example.net -u user -P
 
 ## Yubikey OTP support
 
