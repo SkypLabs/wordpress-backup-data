@@ -55,7 +55,7 @@ If you have secured your Wordpress blog with the [Yubikey OTP plugin][2], the *-
 
     docker run --rm -it -v <local path>:/backups docker.io/skyplabs/wordpress-backup-data
 
-The *local path* refers the folder on your host system where the backup file will be stored.
+*local path* refers to the folder on your host system where the backup file will be stored.
 
 If you want to store the backup file in your current directory :
 
