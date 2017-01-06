@@ -1,5 +1,5 @@
 FROM python:2-onbuild
-MAINTAINER skyper@skyplabs.net
+MAINTAINER Paul-Emmanuel Raoul <skyper@skyplabs.net>
 
 RUN mkdir /backups
 
