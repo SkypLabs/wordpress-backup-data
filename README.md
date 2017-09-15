@@ -1,23 +1,24 @@
-# WordPress Backup Config
+# WordPress Backup Data
 
-This Python script is made for doing a complete backup of your Wordpress blog's data. It does exactly the same thing that the Wordpress' export feature.
+This Python script is made for doing a complete backup of your WordPress blog's data. It does exactly the same thing that the WordPress' export feature.
 
 ## Dependencies
 
  * Python 2.7
- * [Mechanize][1] package
+ * [Mechanize][mechanize] package
 
 ### On Fedora
 
-    yum install python-mechanize
+    dnf install python-mechanize
 
 ### On Debian
 
-    aptitude install python-mechanize
+    apt update
+    apt install python-mechanize
 
 ### Using pip
 
-    pip install mechanize
+    pip install -r requirements.txt
 
 ## How to
 
@@ -49,7 +50,7 @@ This Python script is made for doing a complete backup of your Wordpress blog's 
 
 ## Yubikey OTP support
 
-If you have secured your Wordpress blog with the [Yubikey OTP plugin][2], the *-O* option is made for you ! By this way, you will be prompted to enter your OTP.
+If you have secured your WordPress blog with the [Yubikey OTP plugin][yubikey-wp-plugin], the *-O* option is made for you ! By this way, you will be prompted to enter your OTP.
 
 ## With Docker
 
@@ -67,8 +68,8 @@ And if you want to specify some *options* :
 
 ## License
 
-[GPL version 3][3]
+[GPL version 3][GPLv3]
 
-  [1]: https://pypi.python.org/pypi/mechanize "Mechanize Python package"
-  [2]: https://wordpress.org/plugins/yubikey-plugin/ "Yubikey Wordpress plugin"
-  [3]: https://www.gnu.org/licenses/gpl.txt "GPL version 3"
+ [mechanize]: https://pypi.python.org/pypi/mechanize "Mechanize Python package"
+ [yubikey-wp-plugin]: https://wordpress.org/plugins/yubikey-plugin/ "Yubikey Wordpress plugin"
+ [GPLv3]: https://www.gnu.org/licenses/gpl.txt "GPL version 3"
