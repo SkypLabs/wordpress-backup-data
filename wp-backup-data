@@ -62,7 +62,7 @@ def check_field(checker, data):
     try:
         checker(data)
     except ValueError, e:
-        stderr.write(str(e) + "\n")
+        stderr.write("[x] " + str(e) + "\n")
         exit(1)
     return data
 
@@ -72,12 +72,12 @@ def check_prompt_field(checker, field = "", password = False):
             if password:
                 data = getpass()
             else:
-                stdout.write(field)
+                stdout.write("[*] " + field)
                 data = raw_input()
             checker(data)
             break
         except ValueError, e:
-            stdout.write(str(e) + "\n")
+            stdout.write("[x] " + str(e) + "\n")
     return data
 
 if __name__ == "__main__":
@@ -168,18 +168,18 @@ if __name__ == "__main__":
 
         # If the result is a HTML document instead of a XML document
         if doctype_re.search(result):
-            stderr.write("\nBad credentials\n")
+            stderr.write("\n[x] Bad credentials\n")
             exit(1)
 
         with open(directory + "/" + filename, "w") as f:
             f.write(result)
     except KeyboardInterrupt:
-        stdout.write("\n\nGood Bye\n")
+        stdout.write("\n\n[*] Good Bye\n")
         exit(0)
     except ArgumentTypeError as e:
-        stderr.write("\n{0}\n".format(e))
+        stderr.write("\n[x] {0}\n".format(e))
         exit(1)
     except CertificateError as e:
-        stderr.write("\n{0}\n".format(e))
-        stderr.write("You can use the '--ignore-certificate' option to ignore this error\n")
+        stderr.write("\n[x] {0}\n".format(e))
+        stderr.write("[!] You can use the '--ignore-certificate' option to ignore this error\n")
         exit(1)
