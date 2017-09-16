@@ -30,8 +30,8 @@ def check_address(address):
     if not address or address.strip() == "":
         raise ValueError('address required')
 
-    # These regex come from Django project
-    # https://github.com/django/django/blob/master/django/core/validators.py
+    # These regex come from the Django project
+    # (See https://github.com/django/django/blob/master/django/core/validators.py).
     ul = '\u00a1-\uffff'
     ipv4_re = r'(?:25[0-5]|2[0-4]\d|[0-1]?\d?\d)(?:\.(?:25[0-5]|2[0-4]\d|[0-1]?\d?\d)){3}'
     hostname_re = r'[a-z' + ul + r'0-9](?:[a-z' + ul + r'0-9-]*[a-z' + ul + r'0-9])?'
@@ -124,7 +124,7 @@ if __name__ == "__main__":
         else:
             protocol = "http://"
 
-        # Python by default attempts to perform certificate validation since v2.7.9
+        # By default, Python attempts to perform certificate validation since v2.7.9.
         if args["ignore-cert"] and version_info[2] > 8:
             from functools import wraps
             from httplib import HTTPSConnection
@@ -166,7 +166,7 @@ if __name__ == "__main__":
         doctype_re = compile("<\!DOCTYPE html>$", MULTILINE)
         result = backup.read()
 
-        # If the result is a HTML document instead of a XML document
+        # If the result is an HTML document instead of an XML document.
         if doctype_re.search(result):
             stderr.write("\n[x] Bad credentials\n")
             exit(1)
