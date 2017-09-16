@@ -22,9 +22,9 @@ This Python script is made for doing a complete backup of your WordPress blog's 
 
 ## How to
 
-    usage: wp_backup_data.py [-h] [-u USER] [-p PASSWORD] [-P] [-O] [-a ADDRESS]
-                             [-d DIRECTORY] [--http] [--https]
-                             [--ignore-certificate] [-v]
+    usage: wp-backup-data [-h] [-u USER] [-p PASSWORD] [-P] [-O] [-a ADDRESS]
+                          [-d DIRECTORY] [--http] [--https]
+                          [--ignore-certificate] [-v]
 
     Do a backup of your WordPress data
 
@@ -46,7 +46,7 @@ This Python script is made for doing a complete backup of your WordPress blog's 
       --ignore-certificate  ignore invalid certificates
       -v, --version         show program's version number and exit
 
-    Example: ./wp-backup-data.py -a blog.example.net -u user -P
+    Example: ./wp-backup-data -a blog.example.net -u user -P
 
 ## Yubikey OTP support
 
