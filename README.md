@@ -1,5 +1,7 @@
 # WordPress Backup Data
 
+[![Known Vulnerabilities](https://snyk.io/test/github/SkypLabs/wordpress-backup-data/badge.svg)](https://snyk.io/test/github/SkypLabs/wordpress-backup-data)
+
 This Python script is made for doing a complete backup of your WordPress blog's data. It does exactly the same thing that the WordPress' export feature.
 
 ## Dependencies
