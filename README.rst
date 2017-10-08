@@ -1,28 +1,45 @@
-# WordPress Backup Data
+=====================
+WordPress Backup Data
+=====================
 
-[![Dependency Status](https://gemnasium.com/badges/github.com/SkypLabs/wordpress-backup-data.svg)](https://gemnasium.com/github.com/SkypLabs/wordpress-backup-data) [![Known Vulnerabilities](https://snyk.io/test/github/SkypLabs/wordpress-backup-data/badge.svg)](https://snyk.io/test/github/SkypLabs/wordpress-backup-data)
+|Dependency Status| |Known Vulnerabilities|
 
-This Python script is made for doing a complete backup of your WordPress blog's data. It does exactly the same thing that the WordPress' export feature.
+This Python script is made for doing a complete backup of your WordPress
+blog's data. It does exactly the same thing that the WordPress' export
+feature.
 
-## Dependencies
+Dependencies
+============
 
- * Python 2.7
- * [Mechanize][mechanize] package
+-  Python 2.7
+-  `Mechanize <https://pypi.python.org/pypi/mechanize>`__ package
 
-### On Fedora
+On Fedora
+---------
+
+::
 
     dnf install python-mechanize
 
-### On Debian
+On Debian
+---------
+
+::
 
     apt update
     apt install python-mechanize
 
-### Using pip
+Using pip
+---------
+
+::
 
     pip install -r requirements.txt
 
-## How to
+How to
+======
+
+::
 
     usage: wp-backup-data [-h] [-u USER] [-p PASSWORD] [-P] [-O] [-a ADDRESS]
                           [-d DIRECTORY] [--http] [--https]
@@ -50,28 +67,42 @@ This Python script is made for doing a complete backup of your WordPress blog's 
 
     Example: ./wp-backup-data -a blog.example.net -u user -P
 
-## Yubikey OTP support
+Yubikey OTP support
+===================
 
-If you have secured your WordPress blog with the [Yubikey OTP plugin][yubikey-wp-plugin], the *-O* option is made for you ! By this way, you will be prompted to enter your OTP.
+If you have secured your WordPress blog with the `Yubikey OTP
+plugin <https://wordpress.org/plugins/yubikey-plugin/>`__, the *-O*
+option is made for you ! By this way, you will be prompted to enter your
+OTP.
 
-## With Docker
+With Docker
+===========
+
+::
 
     docker run --rm -it -v <local path>:/backups docker.io/skyplabs/wordpress-backup-data
 
-*local path* refers to the folder on your host system where the backup file will be stored.
+*local path* refers to the folder on your host system where the backup
+file will be stored.
 
 If you want to store the backup file in your current directory :
+
+::
 
     docker run --rm -it -v $(pwd):/backups docker.io/skyplabs/wordpress-backup-data
 
 And if you want to specify some *options* :
 
+::
+
     docker run --rm -it -v $(pwd):/backups docker.io/skyplabs/wordpress-backup-data -d /backups <options>
 
-## License
+License
+=======
 
-[GPL version 3][GPLv3]
+`GPL version 3 <https://www.gnu.org/licenses/gpl.txt>`__
 
- [mechanize]: https://pypi.python.org/pypi/mechanize "Mechanize Python package"
- [yubikey-wp-plugin]: https://wordpress.org/plugins/yubikey-plugin/ "Yubikey Wordpress plugin"
- [GPLv3]: https://www.gnu.org/licenses/gpl.txt "GPL version 3"
+.. |Dependency Status| image:: https://gemnasium.com/badges/github.com/SkypLabs/wordpress-backup-data.svg
+   :target: https://gemnasium.com/github.com/SkypLabs/wordpress-backup-data
+.. |Known Vulnerabilities| image:: https://snyk.io/test/github/SkypLabs/wordpress-backup-data/badge.svg
+   :target: https://snyk.io/test/github/SkypLabs/wordpress-backup-data
