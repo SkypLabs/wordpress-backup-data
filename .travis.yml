@@ -1,0 +1,22 @@
+sudo: false
+
+language: python
+
+python:
+  - 2.7
+
+script: python setup.py test
+
+jobs:
+  include:
+  - stage: PyPI release
+    python: '2.7'
+    deploy:
+      provider: pypi
+      distributions: sdist
+      user: skyplabs
+      password:
+        secure: Ucvt3vqZvi/Jc4pgyPZ+r7526pKhm0AgrbRIpOwmN2grUMpr3M51lA26FoS8GnuRmaCalfKMJc2HRL5xCLPaTrXmgUc1LXxnZ7GJH7UJ1ThWNVHVyQaMghSWHIdEMA8sSPv8fP28EMMtdqGet83fDnMQKktmVl7o+uF5HIHCFPL49K23d8PYnUAl1WY0bxUKNK43KqpeTQtvztov21QFp5YiMkiHwyu7LMpEOWkfvWyrluhFQ0e6URqtxCQRot/GjnKC8yqbLLNVYFRwmAYJdYxdmtUUepcGusr8PrxqxDay41DaA5I7V+tONNJ3VqtconoQrcJKVPKhK2c0GCUoBy3KEZ4nxZfuxLF+m/XgkgyLAx47rEHKP3RL2S23fRas2EHeCXI/Vba1xpb8WI+19BY2ZZQC7JXKgqbvbpmu4F6plt0GdmUoq+EQ1orxHBw9SgNt34Ic7Bws04x3MuPKuRNQ/mJsjmGxj+Mi9oYZzad7cgvFDrErg9ytC7Hj3guDgZta7+b5MZqKH19OyroxYIz9E4byGemVLbKQ58d/nVrg4O6zAXkN16OMKqzVt1U8lyW1/NBhzSbUNF2/UgoyKpA4E2pN4O/O/qNJpvpNd1qyy6NwC4avK5tAr/WH1JsPrJQ1Twp/Tq8SsSXyNdbQwtYa704lufdXj7fDmFS8gvs=
+      on:
+        tags: true
+        repo: SkypLabs/wordpress-backup-data
