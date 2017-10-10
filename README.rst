@@ -8,33 +8,24 @@ This Python script is made for doing a complete backup of your WordPress
 blog's data. It does exactly the same thing that the WordPress' export
 feature.
 
-Dependencies
+Installation
 ============
 
--  Python 2.7
--  `Mechanize <https://pypi.python.org/pypi/mechanize>`__ package
-
-On Fedora
----------
+With pip (recommanded)
+----------------------
 
 ::
 
-    dnf install python-mechanize
+    pip install wordpress-backup-data
 
-On Debian
----------
-
-::
-
-    apt update
-    apt install python-mechanize
-
-Using pip
----------
+From sources
+------------
 
 ::
 
-    pip install -r requirements.txt
+    git clone https://github.com/SkypLabs/wordpress-backup-data.git
+    cd wordpress-backup-data
+    python setup.py install
 
 How to
 ======
