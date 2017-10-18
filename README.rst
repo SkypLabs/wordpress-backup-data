@@ -2,7 +2,7 @@
 WordPress Backup Data
 =====================
 
-|Dependency Status| |Known Vulnerabilities|
+|Code Coverage| |Dependency Status| |Known Vulnerabilities|
 
 This Python script is made for doing a complete backup of your WordPress
 blog's data. It does exactly the same thing that the WordPress' export
@@ -93,6 +93,8 @@ License
 
 `GPL version 3 <https://www.gnu.org/licenses/gpl.txt>`__
 
+.. |Code Coverage| image:: https://api.codacy.com/project/badge/Grade/4e9d007ad30445e49137bef1c82c9b78
+   :target: https://www.codacy.com/app/skyper/wordpress-backup-data?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=SkypLabs/wordpress-backup-data&amp;utm_campaign=Badge_Grade
 .. |Dependency Status| image:: https://gemnasium.com/badges/github.com/SkypLabs/wordpress-backup-data.svg
    :target: https://gemnasium.com/github.com/SkypLabs/wordpress-backup-data
 .. |Known Vulnerabilities| image:: https://snyk.io/test/github/SkypLabs/wordpress-backup-data/badge.svg
