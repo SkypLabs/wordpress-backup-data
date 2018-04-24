@@ -1,5 +1,7 @@
 FROM python:2-onbuild
-MAINTAINER Paul-Emmanuel Raoul <skyper@skyplabs.net>
+
+LABEL net.skyplabs.maintainer-name="Paul-Emmanuel Raoul"
+LABEL net.skyplabs.maintainer-email="skyper@skyplabs.net"
 
 RUN mkdir /backups
 
