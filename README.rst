@@ -5,7 +5,7 @@ WordPress Backup Data
 |Code Coverage| |Dependency Status| |Known Vulnerabilities|
 
 This Python script is made for doing a complete backup of your WordPress
-blog's data. It does exactly the same thing that the WordPress' export
+blog's data. It does the exact same job as the WordPress' export
 feature.
 
 Installation
@@ -16,7 +16,7 @@ With pip (recommanded)
 
 ::
 
-    pip install wordpress-backup-data
+    pip install --upgrade wordpress-backup-data
 
 From sources
 ------------
@@ -63,7 +63,7 @@ Yubikey OTP support
 
 If you have secured your WordPress blog with the `Yubikey OTP
 plugin <https://wordpress.org/plugins/yubikey-plugin/>`__, the *-O*
-option is made for you ! By this way, you will be prompted to enter your
+option is made for you! By this way, you will be prompted to enter your
 OTP.
 
 With Docker
@@ -76,13 +76,13 @@ With Docker
 *local path* refers to the folder on your host system where the backup
 file will be stored.
 
-If you want to store the backup file in your current directory :
+If you want to store the backup file in your current directory:
 
 ::
 
     docker run --rm -it -v $(pwd):/backups docker.io/skyplabs/wordpress-backup-data
 
-And if you want to specify some *options* :
+And if you want to specify some *options*:
 
 ::
 
