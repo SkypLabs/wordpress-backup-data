@@ -32,5 +32,7 @@ setup(
         'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
     ],
     scripts = ['wp-backup-data'],
-    install_requires = ['mechanize>=0.2.5'],
+    install_requires = [
+        'mechanize>=0.2.5',
+    ],
 )
