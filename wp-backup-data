@@ -1,13 +1,13 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 
-from mechanize import Browser
 from argparse import ArgumentParser, Action, ArgumentTypeError
-from re import compile, IGNORECASE, MULTILINE
 from datetime import datetime
 from getpass import getpass
+from mechanize import Browser
 from os import access, W_OK
 from os.path import isdir
+from re import compile, IGNORECASE, MULTILINE
 from sys import exit, stderr, stdout, version_info
 
 if version_info[2] > 8:

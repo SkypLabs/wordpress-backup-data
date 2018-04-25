@@ -1,9 +1,9 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 
-from setuptools import setup
-from os.path import dirname, abspath, join
 from codecs import open as fopen
+from os.path import dirname, abspath, join
+from setuptools import setup
 
 DIR = dirname(abspath(__file__))
 VERSION = '1.4.0'
