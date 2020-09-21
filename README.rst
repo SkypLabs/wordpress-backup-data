@@ -8,6 +8,8 @@ This Python script is made for doing a complete backup of your WordPress
 blog's data. It does the exact same job as the WordPress' export
 feature.
 
+This project is no more maintained.
+
 Installation
 ============
 
